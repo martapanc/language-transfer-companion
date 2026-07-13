@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PartSection from '../components/PartSection.astro';
+import { getAvailableSlugs, getCourse } from '../lib/content';
+import type { Course } from '../lib/types';
+
+export function getStaticPaths() {
+  return getAvailableSlugs().map((slug) => ({
+    params: { language: slug },
+    props: { course: getCourse(slug) },
+  }));
+}
+
+interface Props {
+  course: Course;
+}
+
+const { course } = Astro.props;
+const decksAvailable = course.parts.filter((p) => p.flashcard).length;
+---
+
+<Base
+  title={`${course.name} — Language Transfer Companion`}
+  description={`Topic list for all ${course.trackCount} tracks of Language Transfer ${course.courseName}, plus ${course.totalCards} downloadable practice flashcards.`}
+>
+  <section class="hero wrap">
+    <a class="backlink" href="/#languages">← All languages</a>
+    <span class="eyebrow">{course.flag} {course.courseName}</span>
+    <h1>{course.name} — topics & flashcards</h1>
+    <p class="lede">{course.tagline}</p>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="num">{course.trackCount}</div>
+        <div class="label">tracks</div>
+      </div>
+      <div class="stat">
+        <div class="num">{course.parts.length}</div>
+        <div class="label">thematic parts</div>
+      </div>
+      <div class="stat">
+        <div class="num">{course.totalCards.toLocaleString()}</div>
+        <div class="label">flashcards</div>
+      </div>
+      <div class="stat">
+        <div class="num">{decksAvailable}</div>
+        <div class="label">downloadable decks</div>
+      </div>
+    </div>
+
+    {
+      course.summariesDownload && (
+        <p style="margin-top:1.5rem">
+          <a class="btn btn-ghost" href={course.summariesDownload} download>
+            ⬇︎ Download all topic summaries (Markdown)
+          </a>
+        </p>
+      )
+    }
+  </section>
+
+  <section class="section wrap">
+    <h2 class="section-title">Jump to a part</h2>
+    <nav class="toc" aria-label="Course parts">
+      {
+        course.parts.map((part) => (
+          <a href={`#part-${part.id}`}>
+            <span class="toc-part">
+              {part.id}. {part.title}
+            </span>
+            <span class="toc-range">
+              {part.trackStart}–{part.trackEnd}
+            </span>
+          </a>
+        ))
+      }
+    </nav>
+
+    {course.notes && <p class="callout" style="margin-top:1.5rem">{course.notes}</p>}
+
+    {course.parts.map((part) => <PartSection part={part} />)}
+  </section>
+</Base>

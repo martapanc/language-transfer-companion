@@ -1,0 +1,48 @@
+---
+import type { Part } from '../lib/types';
+import { renderSummary } from '../lib/inline';
+
+interface Props {
+  part: Part;
+}
+
+const { part } = Astro.props;
+const anchor = `part-${part.id}`;
+---
+
+<section class="part" id={anchor}>
+  <div class="part-head">
+    <div>
+      <div class="part-index">Part {part.id}</div>
+      <h2>{part.title}</h2>
+    </div>
+    <div class="part-range">Tracks {part.trackStart}–{part.trackEnd}</div>
+  </div>
+
+  {
+    part.flashcard && (
+      <div class="download">
+        <span class="dl-icon" aria-hidden="true">🃏</span>
+        <div class="dl-text">
+          <strong>Practice flashcards</strong>
+          <span>{part.flashcard.cardCount} cards · CSV for Anki, Quizlet, or any SRS</span>
+        </div>
+        <a class="btn btn-primary" href={part.flashcard.href} download>
+          Download deck
+        </a>
+      </div>
+    )
+  }
+
+  <ol class="tracks">
+    {
+      part.tracks.map((track) => (
+        <li class="track" id={`track-${track.number}`}>
+          <span class="track-num">{track.number}</span>
+          <span class="track-title">{track.title}</span>
+          <div class="track-summary" set:html={renderSummary(track.summary)} />
+        </li>
+      ))
+    }
+  </ol>
+</section>

@@ -1,0 +1,16 @@
+{
+  "name": "language-transfer-companion",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "An unofficial community companion to the Language Transfer courses: per-track topic summaries and downloadable practice flashcards.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "7.0.7"
+  }
+}

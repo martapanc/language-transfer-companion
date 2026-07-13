@@ -1,0 +1,24 @@
+{
+  "slug": "spanish",
+  "name": "Spanish",
+  "endonym": "Español",
+  "flag": "🇪🇸",
+  "status": "available",
+  "courseName": "Complete Spanish",
+  "trackCount": 90,
+  "tagline": "A spiral grammar course that builds Spanish from cognates all the way to the subjunctive — one thinking step at a time.",
+  "officialCourseUrl": "https://www.languagetransfer.org/courses",
+  "summariesDownload": "/downloads/spanish/language-transfer-spanish-summaries.md",
+  "notes": "Track 1 is the course introduction and teaches no Spanish. Vocabulary is de-duplicated within each part and a word is listed under the track where it is first taught.",
+  "parts": [
+    { "id": 1, "flashcardFile": "lt-01-09-cognates-and-first-sentences.csv", "cardCount": 163 },
+    { "id": 2, "flashcardFile": "lt-10-18-present-tense-and-stem-changes.csv", "cardCount": 161 },
+    { "id": 3, "flashcardFile": "lt-19-24-perfect-past-and-pronouns.csv", "cardCount": 62 },
+    { "id": 4, "flashcardFile": "lt-25-35-reflexives-numbers-time-ser-estar.csv", "cardCount": 116 },
+    { "id": 5, "flashcardFile": "lt-36-45-future-conditional-gustar-prepositions.csv", "cardCount": 105 },
+    { "id": 6, "flashcardFile": "lt-46-55-imperfect-pluperfect-por-para.csv", "cardCount": 109 },
+    { "id": 7, "flashcardFile": "lt-56-68-preterite-relatives-possession.csv", "cardCount": 128 },
+    { "id": 8, "flashcardFile": "lt-69-83-subjunctive-mood-tense.csv", "cardCount": 119 },
+    { "id": 9, "flashcardFile": "lt-84-90-irregular-verbs-and-dialects.csv", "cardCount": 71 }
+  ]
+}

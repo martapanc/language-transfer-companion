@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import { getAvailableCourses } from '../lib/content';
+import { PLANNED_LANGUAGES } from '../lib/languages';
+
+const courses = getAvailableCourses();
+---
+
+<Base title="Language Transfer Companion — topics & flashcards">
+  <section class="hero wrap">
+    <span class="eyebrow">Unofficial companion</span>
+    <h1>Every track, at a glance — plus flashcards to make it stick.</h1>
+    <p class="lede">
+      Language Transfer teaches you to <em>think</em> in a new language, with nothing to read
+      and nothing to memorise. This companion adds the two things the audio courses don't come
+      with: a searchable topic list for every track, and downloadable practice decks for when
+      you <em>do</em> want to drill the vocabulary.
+    </p>
+  </section>
+
+  <section class="section wrap" id="languages">
+    <h2 class="section-title">Choose a language</h2>
+    <p class="section-sub">Spanish is ready now. The other Language Transfer courses are on the way — contributions welcome.</p>
+
+    <div class="card-grid">
+      {
+        courses.map((course) => (
+          <a class="lang-card" href={`/${course.slug}`}>
+            <span class="lang-flag" aria-hidden="true">{course.flag}</span>
+            <h3>{course.name}</h3>
+            <p class="muted">
+              {course.courseName} · {course.trackCount} tracks · {course.totalCards.toLocaleString()} flashcards
+            </p>
+            <span class="tag">Available</span>
+          </a>
+        ))
+      }
+      {
+        PLANNED_LANGUAGES.map((lang) => (
+          <div class="lang-card is-planned">
+            <span class="lang-flag" aria-hidden="true">{lang.flag}</span>
+            <h3>{lang.name}</h3>
+            <p class="muted">{lang.note}</p>
+            <span class="tag tag-soon">Coming soon</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section wrap" id="about">
+    <h2 class="section-title">About this project</h2>
+    <p class="section-sub">
+      Made by a learner, for learners — a small way to give back to a course that's completely free.
+    </p>
+    <div class="callout stack" style="--stack-gap:0.75rem">
+      <p>
+        <strong>What this is:</strong> a set of per-track topic summaries (so you can find,
+        review, or preview a lesson) and vocabulary flashcards exported to plain CSV — ready to
+        import into Anki, Quizlet, or any spaced-repetition app.
+      </p>
+      <p>
+        <strong>What this isn't:</strong> a replacement for the courses. The real learning happens
+        by listening and building each sentence yourself. Please go listen to the original audio at
+        <a href="https://www.languagetransfer.org" target="_blank" rel="noopener">languagetransfer.org</a>
+        — it's free, and donation-supported.
+      </p>
+      <p>
+        This is an independent, unofficial project and is not affiliated with or endorsed by
+        Language Transfer.
+      </p>
+    </div>
+  </section>
+</Base>
