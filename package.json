@@ -6,11 +6,16 @@
   "description": "An unofficial community companion to the Language Transfer courses: per-track topic summaries and downloadable practice flashcards.",
   "scripts": {
     "dev": "astro dev",
+    "zip": "node scripts/build-decks-zip.mjs",
+    "prebuild": "node scripts/build-decks-zip.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check"
   },
   "dependencies": {
     "astro": "7.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1"
   }
 }

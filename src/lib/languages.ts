@@ -19,10 +19,9 @@ export interface PlannedLanguage {
 }
 
 export const PLANNED_LANGUAGES: PlannedLanguage[] = [
-  // French and Italian are now available (see AVAILABLE_SLUGS).
-  // { name: 'German', flag: '🇩🇪', note: 'Complete German · 50 tracks' },
-  // { name: 'Greek', flag: '🇬🇷', note: 'Complete Greek · 120 tracks' },
-  // { name: 'Turkish', flag: '🇹🇷', note: 'Complete Turkish · 44 tracks' },
-  // { name: 'Arabic', flag: '🇸🇦', note: 'Complete Arabic · 38 tracks' },
-  // { name: 'Swahili', flag: '🇰🇪', note: 'Introduction to Swahili · 45 tracks' },
+  { name: 'German', flag: '🇩🇪', note: 'Complete German · 50 tracks' },
+  { name: 'Greek', flag: '🇬🇷', note: 'Complete Greek · 120 tracks' },
+  { name: 'Turkish', flag: '🇹🇷', note: 'Complete Turkish · 44 tracks' },
+  { name: 'Arabic', flag: '🇸🇦', note: 'Complete Arabic · 38 tracks' },
+  { name: 'Swahili', flag: '🇰🇪', note: 'Introduction to Swahili · 45 tracks' },
 ];

@@ -53,5 +53,20 @@ const {
         <span>Not affiliated with or endorsed by Language Transfer.</span>
       </div>
     </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+    <script>
+      const backToTop = document.getElementById('back-to-top');
+      if (backToTop) {
+        const toggle = () =>
+          backToTop.classList.toggle('is-visible', window.scrollY > 400);
+        toggle();
+        window.addEventListener('scroll', toggle, { passive: true });
+        backToTop.addEventListener('click', () =>
+          window.scrollTo({ top: 0, behavior: 'smooth' }),
+        );
+      }
+    </script>
   </body>
 </html>

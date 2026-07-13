@@ -17,6 +17,7 @@ interface Props {
 
 const { course } = Astro.props;
 const decksAvailable = course.parts.filter((p) => p.flashcard).length;
+const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
 ---
 
 <Base
@@ -48,36 +49,116 @@ const decksAvailable = course.parts.filter((p) => p.flashcard).length;
       </div>
     </div>
 
-    {
-      course.summariesDownload && (
-        <p style="margin-top:1.5rem">
-          <a class="btn btn-ghost" href={course.summariesDownload} download>
-            ⬇︎ Download all topic summaries (Markdown)
+    <div class="hero-actions">
+      {
+        decksAvailable > 0 && (
+          <a class="btn btn-primary" href={decksZipHref} download>
+            ⬇︎ Download all {decksAvailable} decks (.zip)
           </a>
-        </p>
-      )
-    }
+        )
+      }
+      {
+        course.summariesDownload && (
+          <a class="btn btn-ghost" href={course.summariesDownload} download>
+            ⬇︎ Topic summaries (Markdown)
+          </a>
+        )
+      }
+    </div>
   </section>
 
   <section class="section wrap">
-    <h2 class="section-title">Jump to a part</h2>
-    <nav class="toc" aria-label="Course parts">
-      {
-        course.parts.map((part) => (
-          <a href={`#part-${part.id}`}>
-            <span class="toc-part">
-              {part.id}. {part.title}
-            </span>
-            <span class="toc-range">
-              {part.trackStart}–{part.trackEnd}
-            </span>
-          </a>
-        ))
-      }
-    </nav>
+    <div class="search-bar" id="search-bar">
+      <span class="search-icon" aria-hidden="true">🔎</span>
+      <input
+        type="search"
+        id="track-search"
+        autocomplete="off"
+        aria-label={`Search ${course.name} track topics`}
+        placeholder="Search topics — e.g. numbers, reflexive, future…"
+      />
+      <button type="button" class="search-clear" id="search-clear" aria-label="Clear search">×</button>
+    </div>
+    <p class="search-count" id="search-count" hidden></p>
 
-    {course.notes && <p class="callout" style="margin-top:1.5rem">{course.notes}</p>}
+    <div id="toc-block">
+      <h2 class="section-title">Jump to a part</h2>
+      <nav class="toc" aria-label="Course parts">
+        {
+          course.parts.map((part) => (
+            <a href={`#part-${part.id}`}>
+              <span class="toc-part">
+                {part.id}. {part.title}
+              </span>
+              <span class="toc-range">
+                {part.trackStart}–{part.trackEnd}
+              </span>
+            </a>
+          ))
+        }
+      </nav>
 
-    {course.parts.map((part) => <PartSection part={part} />)}
+      {course.notes && <p class="callout" style="margin-top:1.5rem">{course.notes}</p>}
+    </div>
+
+    <p class="no-results" id="no-results" hidden>
+      <strong>No tracks match your search.</strong> Try a different word.
+    </p>
+
+    <div id="parts">
+      {course.parts.map((part) => <PartSection part={part} />)}
+    </div>
   </section>
+
+  <script>
+    const input = document.getElementById('track-search') as HTMLInputElement | null;
+    if (input) {
+      const bar = document.getElementById('search-bar');
+      const clearBtn = document.getElementById('search-clear');
+      const countEl = document.getElementById('search-count');
+      const noResults = document.getElementById('no-results');
+      const tocBlock = document.getElementById('toc-block');
+      const tracks = Array.from(
+        document.querySelectorAll<HTMLElement>('#parts .track'),
+      ).map((el) => ({ el, text: (el.textContent || '').toLowerCase() }));
+      const parts = Array.from(document.querySelectorAll<HTMLElement>('#parts .part'));
+      const total = tracks.length;
+
+      const apply = (raw: string) => {
+        const query = raw.trim().toLowerCase();
+        const active = query.length > 0;
+        bar?.classList.toggle('has-query', active);
+        let visible = 0;
+        for (const t of tracks) {
+          const match = !active || t.text.includes(query);
+          t.el.hidden = !match;
+          if (match) visible++;
+        }
+        for (const p of parts) {
+          p.hidden = active && !p.querySelector('.track:not([hidden])');
+        }
+        if (tocBlock) tocBlock.hidden = active;
+        if (countEl) {
+          countEl.hidden = !active;
+          countEl.textContent = active
+            ? `${visible} of ${total} track${total === 1 ? '' : 's'} match “${raw.trim()}”`
+            : '';
+        }
+        if (noResults) noResults.hidden = !(active && visible === 0);
+      };
+
+      input.addEventListener('input', () => apply(input.value));
+      clearBtn?.addEventListener('click', () => {
+        input.value = '';
+        apply('');
+        input.focus();
+      });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          input.value = '';
+          apply('');
+        }
+      });
+    }
+  </script>
 </Base>

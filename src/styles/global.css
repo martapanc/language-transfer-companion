@@ -492,3 +492,162 @@ a.lang-card:hover {
   white-space: nowrap;
   border: 0;
 }
+
+/* --- Hero action buttons -------------------------------------------------- */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+/* --- Search / filter ------------------------------------------------------ */
+
+.search-bar {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.search-bar .search-icon {
+  position: absolute;
+  left: 0.95rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.6;
+  pointer-events: none;
+  font-size: 0.95rem;
+}
+.search-bar input {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.8rem 2.7rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+.search-bar input::placeholder {
+  color: var(--text-muted);
+}
+.search-bar input:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+.search-clear {
+  position: absolute;
+  right: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: none;
+  border-radius: 50%;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.search-clear:hover {
+  color: var(--accent);
+}
+.search-bar.has-query .search-clear {
+  display: flex;
+}
+.search-count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: -0.4rem 0 1.5rem;
+}
+.no-results {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--bg-subtle);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+.no-results strong {
+  color: var(--text);
+}
+
+/* Hidden by search — more specific than .track/.part so it wins. */
+.track[hidden],
+.part[hidden] {
+  display: none;
+}
+
+/* --- Per-track permalinks ------------------------------------------------- */
+
+.track {
+  scroll-margin-top: 5rem;
+}
+.track-anchor {
+  margin-left: 0.35rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.track:hover .track-anchor,
+.track-anchor:focus-visible {
+  opacity: 0.65;
+}
+.track-anchor:hover {
+  opacity: 1;
+  color: var(--accent);
+  text-decoration: none;
+}
+.track:target {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* --- Back to top ---------------------------------------------------------- */
+
+.back-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  width: 2.9rem;
+  height: 2.9rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font-size: 1.15rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 20;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.back-to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .back-to-top {
+    transition: none;
+  }
+}
