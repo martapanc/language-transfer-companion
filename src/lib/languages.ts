@@ -9,7 +9,7 @@
  * next — they render as "coming soon" cards so contributors know what's missing.
  */
 
-export const AVAILABLE_SLUGS = ['spanish'] as const;
+export const AVAILABLE_SLUGS = ['spanish', 'french', 'italian'] as const;
 
 export interface PlannedLanguage {
   name: string;
@@ -19,8 +19,7 @@ export interface PlannedLanguage {
 }
 
 export const PLANNED_LANGUAGES: PlannedLanguage[] = [
-  { name: 'French', flag: '🇫🇷', note: 'Complete French · 40 tracks' },
-  { name: 'Italian', flag: '🇮🇹', note: 'Complete Italian · 30 tracks' },
+  // French and Italian are now available (see AVAILABLE_SLUGS).
   // { name: 'German', flag: '🇩🇪', note: 'Complete German · 50 tracks' },
   // { name: 'Greek', flag: '🇬🇷', note: 'Complete Greek · 120 tracks' },
   // { name: 'Turkish', flag: '🇹🇷', note: 'Complete Turkish · 44 tracks' },

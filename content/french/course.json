@@ -1,0 +1,20 @@
+{
+  "slug": "french",
+  "name": "French",
+  "endonym": "Français",
+  "flag": "🇫🇷",
+  "status": "available",
+  "courseName": "Introduction to French",
+  "trackCount": 40,
+  "tagline": "The Language Transfer introduction to French — from English–French cognates to the near future and the perfect past, one thinking step at a time.",
+  "officialCourseUrl": "https://www.languagetransfer.org/courses",
+  "summariesDownload": "/downloads/french/language-transfer-french-summaries.md",
+  "notes": "A spiral grammar course: parts are grammatical themes, not topics like \"food\" or \"colours\". Vocabulary is de-duplicated within each part and a word is listed under the track where it is first taught.",
+  "parts": [
+    { "id": 1, "flashcardFile": "lt-fr-01-08-cognates-first-sentences-gender.csv", "cardCount": 84 },
+    { "id": 2, "flashcardFile": "lt-fr-09-16-pronouns-numbers-articles-liaison.csv", "cardCount": 67 },
+    { "id": 3, "flashcardFile": "lt-fr-17-24-nouns-negation-present-etre.csv", "cardCount": 58 },
+    { "id": 4, "flashcardFile": "lt-fr-25-32-lost-s-reflexives-question-words.csv", "cardCount": 67 },
+    { "id": 5, "flashcardFile": "lt-fr-33-40-adjectives-re-verbs-future-past.csv", "cardCount": 79 }
+  ]
+}
