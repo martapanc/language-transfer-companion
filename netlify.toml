@@ -1,0 +1,18 @@
+# Netlify build configuration for the Astro static site.
+# Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # `npm run build` runs the prebuild step (generates the deck .zip files)
+  # and then `astro build`. Using npm here keeps the prebuild lifecycle hook
+  # working regardless of which package manager Netlify uses to install.
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Long-cache the fingerprinted assets Astro emits.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
