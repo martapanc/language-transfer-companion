@@ -9,18 +9,18 @@
    ========================================================================== */
 
 :root {
-  --bg: #fbf7f0;
+  --bg: #fafafa;
   --bg-elevated: #ffffff;
-  --bg-subtle: #f3ede2;
-  --text: #23201b;
-  --text-muted: #6b6459;
-  --border: #e7ddcd;
-  --accent: #c8452f;
-  --accent-strong: #a5341f;
-  --accent-soft: #f7e4de;
+  --bg-subtle: #f0f0f1;
+  --text: #18181b;
+  --text-muted: #6b6b72;
+  --border: #e4e4e7;
+  --accent: #18181b;
+  --accent-strong: #000000;
+  --accent-soft: #efefef;
   --accent-contrast: #ffffff;
-  --ring: rgba(200, 69, 47, 0.35);
-  --shadow: 0 1px 2px rgba(35, 32, 27, 0.05), 0 8px 24px -12px rgba(35, 32, 27, 0.18);
+  --ring: rgba(24, 24, 27, 0.3);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 24px -12px rgba(0, 0, 0, 0.16);
   --radius: 14px;
   --maxw: 940px;
   --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -29,17 +29,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1712;
-    --bg-elevated: #241f19;
-    --bg-subtle: #2b2620;
-    --text: #f0e9dd;
-    --text-muted: #a89e8e;
-    --border: #38312a;
-    --accent: #f0785f;
-    --accent-strong: #f79079;
-    --accent-soft: #3a251f;
-    --accent-contrast: #1a1712;
-    --ring: rgba(240, 120, 95, 0.4);
+    --bg: #0e0e10;
+    --bg-elevated: #17171a;
+    --bg-subtle: #1e1e21;
+    --text: #f4f4f5;
+    --text-muted: #a1a1aa;
+    --border: #2c2c30;
+    --accent: #f4f4f5;
+    --accent-strong: #ffffff;
+    --accent-soft: #242428;
+    --accent-contrast: #0e0e10;
+    --ring: rgba(244, 244, 245, 0.35);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -14px rgba(0, 0, 0, 0.7);
   }
 }
