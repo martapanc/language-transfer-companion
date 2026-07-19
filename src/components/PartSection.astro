@@ -11,12 +11,12 @@ const anchor = `part-${part.id}`;
 ---
 
 <section class="part" id={anchor}>
-  <div class="part-head">
+  <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3 pb-[0.9rem] border-b-2 border-border">
     <div>
-      <div class="part-index">Part {part.id}</div>
-      <h2>{part.title}</h2>
+      <div class="text-[0.82rem] font-semibold uppercase tracking-[0.06em] text-accent">Part {part.id}</div>
+      <h2 class="text-[1.55rem] font-extrabold">{part.title}</h2>
     </div>
-    <div class="part-range">Tracks {part.trackStart}–{part.trackEnd}</div>
+    <div class="text-muted text-[0.9rem]">Tracks {part.trackStart}–{part.trackEnd}</div>
   </div>
 
   {
@@ -34,7 +34,7 @@ const anchor = `part-${part.id}`;
     )
   }
 
-  <ol class="tracks">
+  <ol class="mt-5 grid gap-[0.6rem]">
     {
       part.tracks.map((track) => (
         <li class="track" id={`track-${track.number}`}>

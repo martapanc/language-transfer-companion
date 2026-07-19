@@ -25,25 +25,27 @@ const courses = getAvailableCourses();
       way – contributions welcome.
     </p>
 
-    <div class="card-grid">
+    <div class="grid gap-4 grid-cols-[repeat(auto-fill,minmax(240px,1fr))]">
       {
         courses.map((course) => (
-          <a class="lang-card" href={`/${course.slug}`}>
-            <span class="lang-flag" aria-hidden="true">{course.flag}</span>
-            <h3>{course.name}</h3>
-            <p class="muted">
+          <a
+            class="flex flex-col gap-2 p-5 rounded-card border border-border bg-surface shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-accent hover:no-underline"
+            href={`/${course.slug}`}
+          >
+            <span class="text-[2rem] leading-none" aria-hidden="true">{course.flag}</span>
+            <h3 class="text-[1.15rem]">{course.name}</h3>
+            <p class="text-muted text-[0.9rem]">
               {course.courseName} · {course.trackCount} tracks · {course.totalCards.toLocaleString()} flashcards
             </p>
-            <span class="tag">Available</span>
           </a>
         ))
       }
       {
         PLANNED_LANGUAGES.map((lang) => (
-          <div class="lang-card is-planned">
-            <span class="lang-flag" aria-hidden="true">{lang.flag}</span>
-            <h3>{lang.name}</h3>
-            <p class="muted">{lang.note}</p>
+          <div class="flex flex-col gap-2 p-5 rounded-card border border-border bg-subtle opacity-[0.72]">
+            <span class="text-[2rem] leading-none" aria-hidden="true">{lang.flag}</span>
+            <h3 class="text-[1.15rem]">{lang.name}</h3>
+            <p class="text-muted text-[0.9rem]">{lang.note}</p>
             <span class="tag tag-soon">Coming soon</span>
           </div>
         ))
@@ -56,7 +58,7 @@ const courses = getAvailableCourses();
     <p class="section-sub">
       Made by a learner, for learners – a small way to give back to a course that's completely free.
     </p>
-    <div class="callout stack" style="--stack-gap:0.75rem">
+    <div class="callout space-y-3">
       <p>
         <strong>What this is:</strong> a set of per-track topic summaries (so you can find,
         review, or preview a lesson) and vocabulary flashcards exported to plain CSV – ready to
@@ -65,7 +67,7 @@ const courses = getAvailableCourses();
       <p>
         <strong>What this isn't:</strong> a replacement for the courses. The real learning happens
         by listening and building each sentence yourself. Please go listen to the original audio at
-        <a href="https://www.languagetransfer.org" target="_blank" rel="noopener">languagetransfer.org</a>
+        <a href="https://www.languagetransfer.org" target="_blank" rel="noopener" class="mx-1">languagetransfer.org</a>
         – it's free, and donation-supported.
       </p>
       <p>

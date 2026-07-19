@@ -18,6 +18,13 @@ interface Props {
 const { course } = Astro.props;
 const decksAvailable = course.parts.filter((p) => p.flashcard).length;
 const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
+
+const stats = [
+  { num: course.trackCount, label: 'tracks' },
+  { num: course.parts.length, label: 'thematic parts' },
+  { num: course.totalCards.toLocaleString(), label: 'flashcards' },
+  { num: decksAvailable, label: 'downloadable decks' },
+];
 ---
 
 <Base
@@ -25,31 +32,26 @@ const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
   description={`Topic list for all ${course.trackCount} tracks of Language Transfer ${course.courseName}, plus ${course.totalCards} downloadable practice flashcards.`}
 >
   <section class="hero wrap">
-    <a class="backlink" href="/#languages">← All languages</a>
-    <span class="eyebrow">{course.flag} {course.courseName}</span>
+    <div class="flex gap-4">
+        <a class="inline-flex items-center gap-[0.4rem] text-muted text-[0.9rem] mb-5" href="/#languages">← All languages</a>
+        <span class="eyebrow">{course.flag} {course.courseName}</span>
+    </div>
+
     <h1>{course.name} – topics & flashcards</h1>
     <p class="lede">{course.tagline}</p>
 
-    <div class="stats">
-      <div class="stat">
-        <div class="num">{course.trackCount}</div>
-        <div class="label">tracks</div>
-      </div>
-      <div class="stat">
-        <div class="num">{course.parts.length}</div>
-        <div class="label">thematic parts</div>
-      </div>
-      <div class="stat">
-        <div class="num">{course.totalCards.toLocaleString()}</div>
-        <div class="label">flashcards</div>
-      </div>
-      <div class="stat">
-        <div class="num">{decksAvailable}</div>
-        <div class="label">downloadable decks</div>
-      </div>
+    <div class="flex flex-wrap gap-3 mt-7">
+      {
+        stats.map((s) => (
+          <div class="px-[1.1rem] py-[0.85rem] rounded-xl border border-border bg-surface min-w-[120px]">
+            <div class="text-[1.5rem] font-extrabold tracking-[-0.02em]">{s.num}</div>
+            <div class="text-[0.82rem] text-muted">{s.label}</div>
+          </div>
+        ))
+      }
     </div>
 
-    <div class="hero-actions">
+    <div class="flex flex-wrap gap-[0.6rem] mt-6">
       {
         decksAvailable > 0 && (
           <a class="btn btn-primary" href={decksZipHref} download>
@@ -60,7 +62,7 @@ const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
       {
         course.summariesDownload && (
           <a class="btn btn-ghost" href={course.summariesDownload} download>
-            ⬇︎ Topic summaries (Markdown)
+            ⬇︎ Download topic summaries (Markdown)
           </a>
         )
       }
@@ -83,14 +85,17 @@ const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
 
     <div id="toc-block">
       <h2 class="section-title">Jump to a part</h2>
-      <nav class="toc" aria-label="Course parts">
+      <nav class="grid gap-3 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]" aria-label="Course parts">
         {
           course.parts.map((part) => (
-            <a href={`#part-${part.id}`}>
-              <span class="toc-part">
+            <a
+              class="flex justify-between items-baseline gap-3 px-[0.9rem] py-3 rounded-[10px] border border-border bg-surface text-ink hover:border-accent hover:no-underline"
+              href={`#part-${part.id}`}
+            >
+              <span class="font-semibold">
                 {part.id}. {part.title}
               </span>
-              <span class="toc-range">
+              <span class="text-muted text-[0.85rem] whitespace-nowrap">
                 {part.trackStart}–{part.trackEnd}
               </span>
             </a>
@@ -98,7 +103,7 @@ const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
         }
       </nav>
 
-      {course.notes && <p class="callout" style="margin-top:1.5rem">{course.notes}</p>}
+      {course.notes && <p class="callout mt-6">{course.notes}</p>}
     </div>
 
     <p class="no-results" id="no-results" hidden>
