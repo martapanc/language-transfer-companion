@@ -21,13 +21,13 @@ const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
 ---
 
 <Base
-  title={`${course.name} — Language Transfer Companion`}
+  title={`${course.name} – Language Transfer Companion`}
   description={`Topic list for all ${course.trackCount} tracks of Language Transfer ${course.courseName}, plus ${course.totalCards} downloadable practice flashcards.`}
 >
   <section class="hero wrap">
     <a class="backlink" href="/#languages">← All languages</a>
     <span class="eyebrow">{course.flag} {course.courseName}</span>
-    <h1>{course.name} — topics & flashcards</h1>
+    <h1>{course.name} – topics & flashcards</h1>
     <p class="lede">{course.tagline}</p>
 
     <div class="stats">
@@ -75,7 +75,7 @@ const decksZipHref = `/downloads/${course.slug}/${course.slug}-flashcards.zip`;
         id="track-search"
         autocomplete="off"
         aria-label={`Search ${course.name} track topics`}
-        placeholder="Search topics — e.g. numbers, reflexive, future…"
+        placeholder="Search topics – e.g. numbers, reflexive, future…"
       />
       <button type="button" class="search-clear" id="search-clear" aria-label="Clear search">×</button>
     </div>

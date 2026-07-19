@@ -3,21 +3,21 @@
 An **unofficial, community-made** companion website for the
 [Language Transfer](https://www.languagetransfer.org) audio courses. For each course it offers:
 
-1. **A per-track topic list** — a short summary of what every track teaches, grouped into
+1. **A per-track topic list** – a short summary of what every track teaches, grouped into
    thematic parts, so you can find, preview, or review a lesson.
-2. **Downloadable practice flashcards** — vocabulary exported to plain CSV, ready to import
+2. **Downloadable practice flashcards** – vocabulary exported to plain CSV, ready to import
    into Anki, Quizlet, or any spaced-repetition app.
 
 It starts with **Spanish** and is built to extend to French, Italian, German, Turkish, and the
 other Language Transfer courses.
 
 > This is an independent fan project. It is **not affiliated with or endorsed by** Language
-> Transfer. The audio courses are free (and donation-supported) — please go listen at
+> Transfer. The audio courses are free (and donation-supported) – please go listen at
 > [languagetransfer.org](https://www.languagetransfer.org).
 
 ## Tech stack
 
-- [Astro](https://astro.build) — static site generator. No client-side framework; every page is
+- [Astro](https://astro.build) – static site generator. No client-side framework; every page is
   prerendered to plain HTML at build time.
 - Plain CSS with custom properties (light + dark themes). No CSS framework.
 
@@ -31,7 +31,7 @@ npm run preview  # preview the production build
 ```
 
 Deploy the `dist/` folder to any static host (Vercel, Netlify, GitHub Pages, Cloudflare Pages…).
-On Vercel, the Astro preset is auto-detected — no config needed.
+On Vercel, the Astro preset is auto-detected – no config needed.
 
 ## How the content is organised
 
@@ -65,10 +65,10 @@ The parser expects part headings and track headings in this shape:
 ```markdown
 # Part 1 · Cognates & first sentences (Tracks 1–9)
 
-## Track 1 — Introduction & how to use the course
+## Track 1 – Introduction & how to use the course
 Summary paragraph. Inline **bold** and *italic* are supported.
 
-## Track 2 — Convertible words (-al) & Spanish pronunciation
+## Track 2 – Convertible words (-al) & Spanish pronunciation
 Another summary…
 ```
 
@@ -103,7 +103,7 @@ Each flashcard CSV is a headerless `English,Spanish` file (English prompt, targe
 3. Add the slug to `AVAILABLE_SLUGS` in `src/lib/languages.ts`, and remove the language from
    `PLANNED_LANGUAGES` there.
 
-That's it — a new page at `/<language>` is generated automatically.
+That's it – a new page at `/<language>` is generated automatically.
 
 ## Credits
 
