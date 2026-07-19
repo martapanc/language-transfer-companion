@@ -1,5 +1,6 @@
 ---
 import type { Part } from '../lib/types';
+import Icon from './Icon.astro';
 import { renderSummary } from '../lib/inline';
 
 interface Props {
@@ -22,13 +23,13 @@ const anchor = `part-${part.id}`;
   {
     part.flashcard && (
       <div class="download">
-        <span class="dl-icon" aria-hidden="true">🃏</span>
+        <span class="dl-icon" aria-hidden="true"><Icon name="deck" size={24} /></span>
         <div class="dl-text">
           <strong>Practice flashcards</strong>
           <span>{part.flashcard.cardCount} cards · CSV for Anki, Quizlet, or any SRS</span>
         </div>
         <a class="btn btn-primary" href={part.flashcard.href} download>
-          Download deck
+          <Icon name="download" size={16} /> Download deck
         </a>
       </div>
     )

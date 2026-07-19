@@ -136,6 +136,23 @@
     padding-inline: clamp(1rem, 4vw, 2rem);
   }
 
+  /* --- Icons & flags ----------------------------------------------------- */
+  /* Inline SVG icons inherit `currentColor`; flags are cached <img> assets
+     with a hairline ring so light flags (Italy, France) show on a white bg. */
+  .icon {
+    display: inline-block;
+    vertical-align: -0.125em;
+    flex: none;
+  }
+  .flag {
+    display: inline-block;
+    vertical-align: middle;
+    flex: none;
+    border-radius: 3px;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px var(--border);
+  }
+
   /* --- Site header ------------------------------------------------------- */
   .site-header {
     border-bottom: 1px solid var(--border);
@@ -291,9 +308,10 @@
     left: 0.95rem;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
     opacity: 0.6;
     pointer-events: none;
-    font-size: 0.95rem;
   }
   .search-bar input {
     width: 100%;
@@ -439,7 +457,9 @@
     border-radius: 12px;
   }
   .download .dl-icon {
-    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    color: var(--text);
   }
   .download .dl-text {
     flex: 1 1 auto;

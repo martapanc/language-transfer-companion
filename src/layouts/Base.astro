@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -35,7 +36,7 @@ const {
         <nav>
           <a href="/#languages">Languages</a>
           <a href="/#about">About</a>
-          <a href="https://www.languagetransfer.org" target="_blank" rel="noopener">Official site ↗</a>
+          <a class="inline-flex items-center gap-1" href="https://www.languagetransfer.org" target="_blank" rel="noopener">Official site <Icon name="arrow-up-right" size={14} /></a>
         </nav>
       </div>
     </header>
@@ -53,7 +54,7 @@ const {
       </div>
     </footer>
 
-    <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">↑</button>
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top"><Icon name="arrow-up" size={18} /></button>
 
     <script>
       const backToTop = document.getElementById('back-to-top');

@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import PartSection from '../components/PartSection.astro';
+import Flag from '../components/Flag.astro';
+import Icon from '../components/Icon.astro';
 import { getAvailableSlugs, getCourse } from '../lib/content';
 import type { Course } from '../lib/types';
 
@@ -33,8 +35,8 @@ const stats = [
 >
   <section class="hero wrap">
     <div class="flex gap-4">
-        <a class="inline-flex items-center gap-[0.4rem] text-muted text-[0.9rem] mb-5" href="/#languages">← All languages</a>
-        <span class="eyebrow">{course.flag} {course.courseName}</span>
+        <a class="inline-flex items-center gap-[0.4rem] text-muted text-[0.9rem] mb-5" href="/#languages"><Icon name="arrow-left" size={16} /> All languages</a>
+        <span class="eyebrow inline-flex items-center gap-[0.4rem]"><Flag code={course.flag} size={16} /> {course.courseName}</span>
     </div>
 
     <h1>{course.name} – topics & flashcards</h1>
@@ -55,14 +57,14 @@ const stats = [
       {
         decksAvailable > 0 && (
           <a class="btn btn-primary" href={decksZipHref} download>
-            ⬇︎ Download all {decksAvailable} decks (.zip)
+            <Icon name="download" size={16} /> Download all {decksAvailable} decks (.zip)
           </a>
         )
       }
       {
         course.summariesDownload && (
           <a class="btn btn-ghost" href={course.summariesDownload} download>
-            ⬇︎ Download topic summaries (Markdown)
+            <Icon name="download" size={16} /> Download topic summaries (Markdown)
           </a>
         )
       }
@@ -71,7 +73,7 @@ const stats = [
 
   <section class="section wrap">
     <div class="search-bar" id="search-bar">
-      <span class="search-icon" aria-hidden="true">🔎</span>
+      <span class="search-icon" aria-hidden="true"><Icon name="search" size={18} /></span>
       <input
         type="search"
         id="track-search"
@@ -79,7 +81,7 @@ const stats = [
         aria-label={`Search ${course.name} track topics`}
         placeholder="Search topics – e.g. numbers, reflexive, future…"
       />
-      <button type="button" class="search-clear" id="search-clear" aria-label="Clear search">×</button>
+      <button type="button" class="search-clear" id="search-clear" aria-label="Clear search"><Icon name="close" size={16} /></button>
     </div>
     <p class="search-count" id="search-count" hidden></p>
 

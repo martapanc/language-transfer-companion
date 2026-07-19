@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Flag from '../components/Flag.astro';
 import { getAvailableCourses } from '../lib/content';
 import { PLANNED_LANGUAGES } from '../lib/languages';
 
@@ -32,7 +33,7 @@ const courses = getAvailableCourses();
             class="flex flex-col gap-2 p-5 rounded-card border border-border bg-surface shadow-card transition-[transform,border-color] duration-150 hover:-translate-y-[3px] hover:border-accent hover:no-underline"
             href={`/${course.slug}`}
           >
-            <span class="text-[2rem] leading-none" aria-hidden="true">{course.flag}</span>
+            <Flag code={course.flag} size={40} />
             <h3 class="text-[1.15rem]">{course.name}</h3>
             <p class="text-muted text-[0.9rem]">
               {course.courseName} · {course.trackCount} tracks · {course.totalCards.toLocaleString()} flashcards
@@ -43,7 +44,7 @@ const courses = getAvailableCourses();
       {
         PLANNED_LANGUAGES.map((lang) => (
           <div class="flex flex-col gap-2 p-5 rounded-card border border-border bg-subtle opacity-[0.72]">
-            <span class="text-[2rem] leading-none" aria-hidden="true">{lang.flag}</span>
+            <Flag code={lang.flag} size={40} class="opacity-90" />
             <h3 class="text-[1.15rem]">{lang.name}</h3>
             <p class="text-muted text-[0.9rem]">{lang.note}</p>
             <span class="tag tag-soon">Coming soon</span>
