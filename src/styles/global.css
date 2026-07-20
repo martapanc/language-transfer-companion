@@ -12,15 +12,15 @@
   --bg: #ffffff;
   --bg-elevated: #ffffff;
   --bg-subtle: #f4f4f5;
-  --text: #111111;
-  --text-muted: #6b7280;
-  --border: #e4e4e7;
-  --accent: #111111;
+  --text: #141414;
+  --text-muted: #5f5f5f;
+  --border: #e4e4e4;
+  --accent: #141414;
   --accent-strong: #000000;
-  --accent-soft: #f0f0f1;
+  --accent-soft: #f0f0f0;
   --accent-contrast: #ffffff;
-  --ring: rgba(17, 17, 17, 0.28);
-  --shadow: 0 1px 2px rgba(17, 17, 17, 0.05), 0 8px 24px -12px rgba(17, 17, 17, 0.22);
+  --ring: rgba(20, 20, 20, 0.35);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 8px 24px -12px rgba(0, 0, 0, 0.15);
   --radius: 14px;
   --maxw: 940px;
   --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -29,17 +29,17 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0d0d0d;
+    --bg: #0f0f0f;
     --bg-elevated: #171717;
-    --bg-subtle: #1f1f1f;
-    --text: #f5f5f5;
-    --text-muted: #a1a1aa;
+    --bg-subtle: #1c1c1c;
+    --text: #f4f4f4;
+    --text-muted: #a1a1a1;
     --border: #2c2c2c;
-    --accent: #f5f5f5;
+    --accent: #f4f4f4;
     --accent-strong: #ffffff;
     --accent-soft: #262626;
-    --accent-contrast: #0d0d0d;
-    --ring: rgba(245, 245, 245, 0.35);
+    --accent-contrast: #0f0f0f;
+    --ring: rgba(244, 244, 244, 0.4);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -14px rgba(0, 0, 0, 0.7);
   }
 }
@@ -134,6 +134,23 @@
     max-width: var(--maxw);
     margin-inline: auto;
     padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+
+  /* --- Icons & flags ----------------------------------------------------- */
+  /* Inline SVG icons inherit `currentColor`; flags are cached <img> assets
+     with a hairline ring so light flags (Italy, France) show on a white bg. */
+  .icon {
+    display: inline-block;
+    vertical-align: -0.125em;
+    flex: none;
+  }
+  .flag {
+    display: inline-block;
+    vertical-align: middle;
+    flex: none;
+    border-radius: 3px;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px var(--border);
   }
 
   /* --- Site header ------------------------------------------------------- */
@@ -291,9 +308,10 @@
     left: 0.95rem;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
     opacity: 0.6;
     pointer-events: none;
-    font-size: 0.95rem;
   }
   .search-bar input {
     width: 100%;
@@ -439,7 +457,9 @@
     border-radius: 12px;
   }
   .download .dl-icon {
-    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    color: var(--text);
   }
   .download .dl-text {
     flex: 1 1 auto;

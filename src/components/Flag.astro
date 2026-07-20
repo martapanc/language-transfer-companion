@@ -1,0 +1,33 @@
+---
+/**
+ * Renders a country flag as an inline SVG image from `public/flags/<code>.svg`
+ * (sourced from lipis/flag-icons, 4x3 ratio). Replaces flag emoji, which don't
+ * render on every platform (Windows shows the letters "ES", "FR", …).
+ *
+ * `code` is an ISO 3166-1 alpha-2 code (lowercase), e.g. "es", "fr", "it".
+ * Pass `label` for a meaningful flag (adds alt text); omit it when the flag is
+ * decorative and the language name sits right next to it.
+ */
+interface Props {
+  code: string;
+  /** Accessible name, e.g. "Spanish". Omit to render the flag decoratively. */
+  label?: string;
+  /** Width in px; height is derived from the 4:3 ratio. */
+  size?: number;
+  class?: string;
+}
+
+const { code, label, size = 32, class: className = '' } = Astro.props;
+const height = Math.round((size * 3) / 4);
+---
+
+<img
+  src={`/flags/${code}.svg`}
+  width={size}
+  height={height}
+  alt={label ? `${label} flag` : ''}
+  aria-hidden={label ? undefined : 'true'}
+  class:list={['flag', className]}
+  loading="lazy"
+  decoding="async"
+/>

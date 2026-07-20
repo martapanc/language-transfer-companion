@@ -39,6 +39,7 @@ export interface CourseMeta {
   slug: string;
   name: string;
   endonym?: string;
+  /** ISO 3166-1 alpha-2 country code (lowercase) for the flag SVG, e.g. "es". */
   flag: string;
   status: CourseStatus;
   courseName: string;
